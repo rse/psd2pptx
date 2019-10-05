@@ -40,10 +40,16 @@ Usage
    ![sample-screenshot-1](sample-screenshot-1.png)
 
 2. Export the image in Photoshop (PSD) format and copy it to your desktop computer.
-   In Procreate *Options* &rarr; *Share Image* &rarr; *PSD*
+   In Procreate *Options* &rarr; *Share* &rarr; *Share Image* &rarr; *PSD*
    and share it to your desktop computer via *AirDrop* or any cloud storage provider.
 
-3. Convert the received Photoshop (PSD) file to a corresponding PowerPoint (PPTX) file.
+   ![sample-screenshot-2](sample-screenshot-2.png)
+
+3. Optionally check the resulting PSD file in Photoshop.
+
+   ![sample-screenshot-3](sample-screenshot-3.png)
+
+4. Convert the received Photoshop (PSD) file to a corresponding PowerPoint (PPTX) file.
 
     ```shell
     $ psd2pptx -v -o sample.pptx sample.psd
@@ -74,6 +80,10 @@ Usage
     ++ post-adjusting PPTX
     ++ writing PPTX file: sample.pptx
     ```
+
+5. Use the resulting PPTX file in PowerPoint.
+   
+   ![sample-screenshot-4](sample-screenshot-4.png)
 
 License
 -------
