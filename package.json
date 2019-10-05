@@ -1,0 +1,21 @@
+{
+    "name":            "psd2pptx",
+    "version":         "0.9.0",
+    "description":     "Convert Photoshop (PSD) layers to PowerPoint (PPTX) slides",
+    "author":          "Dr. Ralf S. Engelschall",
+    "license":         "MIT",
+    "bin": {
+        "psd2pptx":    "psd2pptx.js"
+    },
+    "dependencies": {
+        "psd.js":      "3.3.3-beta.3",
+        "jimp":        "0.8.4",
+        "bluebird":    "3.7.0",
+        "pptxgenjs":   "2.6.0",
+        "zip-process": "0.2.6",
+        "yargs":       "14.0.0",
+        "execa":       "2.0.5",
+        "chalk":       "2.4.2",
+        "tmp":         "0.1.0"
+    }
+}
