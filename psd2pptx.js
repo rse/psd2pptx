@@ -120,7 +120,7 @@ const zipProcess = require("zip-process")
         await src.opacity(item.opacity / 255)
         await slide.blit(src, 0, 0)
         let out = `${tmpdir.name}/slide-${n++}.png`
-        await slide.write(out)
+        await slide.writeAsync(out)
         pngs.push({ file: out, path: item.path })
     })
 
