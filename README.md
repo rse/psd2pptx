@@ -16,7 +16,7 @@ Abstract
 This is a small Node utility for converting the layers of a Photoshop
 (PSD) graphics file into slides of a PowerPoint (PPTX) presentation. The
 intention is to hand-draw the slides as individual transparent layers in
-an application like Procreate on the iPad and convert the layers into
+an application like Procreate (on the iPad) and convert the layers into
 flattened slides for regular presentation via PowerPoint.
 
 Installation
