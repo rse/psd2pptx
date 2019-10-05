@@ -29,9 +29,23 @@ $ npm install -g psd2pptx
 Usage
 -----
 
-```shell
-$ psd2pptx -v -o sample.pptx sample.psd
-```
+1. Create an image in your preferred graphics program (e.g. Procreate on iPad)
+   with the usual screen-dimensions like 1920x1080.
+   Create a group named `Canvas` and create your background canvas there
+   with an opaque bottom layer and zero or more transparent stacked
+   layers. Create your slides by creating a group for each slide and
+   an transparent bottom layer and zero or more additional transparent
+   stacked layers.
+
+2. Export the image in Photoshop (PSD) format and copy it to your desktop computer.
+   In Procreate *Options* &rarr; *Share Image* &rarr; *PSD*
+   and share it to your desktop computer via *AirDrop* or any cloud storage provider.
+
+3. Convert the received Photoshop (PSD) file to a corresponding PowerPoint (PPTX) file.
+
+    ```shell
+    $ psd2pptx -v -o sample.pptx sample.psd
+    ```
 
 License
 -------
