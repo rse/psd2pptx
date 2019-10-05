@@ -44,7 +44,33 @@ Usage
 3. Convert the received Photoshop (PSD) file to a corresponding PowerPoint (PPTX) file.
 
     ```shell
-    $ psd2pptx -v -o sample.pptx sample.psd
+$ psd2pptx -v -o sample.pptx sample.psd
+++ reading PSD file: sample.psd
+++ extracting layer: Slide-13/4
+++ extracting layer: Slide-13/3
+++ extracting layer: Slide-13/2
+++ extracting layer: Slide-13/1
+++ extracting layer: Slide-01/2
+++ extracting layer: Slide-01/1
+++ extracting layer: Canvas/Title
+++ extracting layer: Canvas/Chalkboard
+++ extracting layer: Canvas/Background
+++ generating canvas: Canvas/Title, Canvas/Chalkboard, Canvas/Background (1920x1080)
+++ generating image: Slide-01/1 (scratch)
+++ generating image: Slide-01/2 (merged)
+++ generating image: Slide-13/1 (scratch)
+++ generating image: Slide-13/2 (merged)
+++ generating image: Slide-13/3 (merged)
+++ generating image: Slide-13/4 (merged)
+++ generating slide: Slide-01/1
+++ generating slide: Slide-01/2
+++ generating slide: Slide-13/1
+++ generating slide: Slide-13/2
+++ generating slide: Slide-13/3
+++ generating slide: Slide-13/4
+++ generating PPTX
+++ post-adjusting PPTX
+++ writing PPTX file: sample.pptx
     ```
 
 License
