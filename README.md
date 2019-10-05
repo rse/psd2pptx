@@ -37,6 +37,8 @@ Usage
    an transparent bottom layer and zero or more additional transparent
    stacked layers.
 
+   ![sample-screenshot-1](sample-screenshot-1.png)
+
 2. Export the image in Photoshop (PSD) format and copy it to your desktop computer.
    In Procreate *Options* &rarr; *Share Image* &rarr; *PSD*
    and share it to your desktop computer via *AirDrop* or any cloud storage provider.
