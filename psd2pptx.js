@@ -100,6 +100,16 @@ const zipProcess = require("zip-process")
         await src.opacity(item.opacity / 255)
         await canvas.blit(src, 0, 0)
     })
+    let canvasFilename = `${tmpdir.name}/canvas.png`
+    await canvas.writeAsync(canvasFilename)
+
+    /*  generate empty image  */
+    const empty = await new Promise((resolve, reject) => {
+        new Jimp(w, h, 0x00000000, (err, image) => {
+            if (err) reject(err)
+            else     resolve(image)
+        })
+    })
 
     /*  generate slides  */
     let pngs = []
@@ -110,7 +120,7 @@ const zipProcess = require("zip-process")
         let p = item.path.replace(/^(.+\/)[^\/]+$/, "$1")
         if (prefix !== p) {
             prefix = p
-            slide = canvas.clone()
+            slide = empty.clone()
             verbose(`generating image: ${chalk.blue(item.path)} (scratch)`)
         }
         else {
@@ -127,9 +137,16 @@ const zipProcess = require("zip-process")
     /*  generate PPTX out of PNG images  */
     let pptx = new PPTXGenJS()
     pptx.setLayout({ name: "Custom", width: 10, height: 10 * (h/w) })
+    pptx.defineSlideMaster({
+         title: "psd2pptx",
+         bkgd:  "FFFFFF",
+         objects: [
+             { "image": { x: 0, y: 0, w: 10, h: 10 * (h/w), path: canvasFilename } }
+         ]
+    })
     for (let i = 0; i < pngs.length; i++) {
         verbose(`generating slide: ${chalk.blue(pngs[i].path)}`)
-        let slide = pptx.addNewSlide()
+        let slide = pptx.addNewSlide("psd2pptx")
         slide.addImage({ path: pngs[i].file, x: 0, y: 0, w: 10, h: 10 * (h/w) })
     }
     let pptxfile = `${tmpdir.name}/slides.pptx`
