@@ -18,7 +18,13 @@
         "chalk":       "2.4.2",
         "tmp":         "0.1.0"
     },
+    "devDependencies": {
+        "upd":         "2.6.0",
+        "pkg":         "4.4.0"
+    },
     "scripts": {
+        "update":      "upd",
+        "package":     "pkg -t node12-linux-x64,node12-win-x64 .",
         "test":        "node psd2pptx.js -v -o sample.pptx sample.psd"
     }
 }
