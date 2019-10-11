@@ -30,12 +30,12 @@ Usage
 -----
 
 1. Create an image in your preferred graphics program (e.g. Procreate on iPad)
-   with the usual screen-dimensions like 1920x1080.
-   Create a group named `Canvas` and create your background canvas there
-   with an opaque bottom layer and zero or more transparent stacked
-   layers. Create your slides by creating a group for each slide and
-   an transparent bottom layer and zero or more additional transparent
-   stacked layers.
+   with the usual screen-dimensions like 1920x1080. Create a group
+   named `Canvas` (or what you later specify as option `-c`/`--canvas`)
+   and create your background canvas there with an opaque bottom layer
+   and zero or more transparent stacked layers. Create your slides by
+   creating a group for each slide and an transparent bottom layer and
+   zero or more additional transparent stacked layers.
 
    ![sample-screenshot-1](sample-screenshot-1.png)
 
