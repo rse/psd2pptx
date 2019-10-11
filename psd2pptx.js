@@ -70,9 +70,6 @@ const zipProcess = require("zip-process")
             })
         }
         else if (node.layer.image) {
-            /*  skip hard-coded Procreate background layer  */
-            if (node.path() === "Background")
-                return
             verbose(`extracting layer: ${chalk.blue(node.path())}`)
             let path = node.path().replace(/\//g, "-").replace(/[^a-zA-Z0-9.]/g, "")
             let pngfile = `${tmpdir.name}/extracted-${path}.png`
