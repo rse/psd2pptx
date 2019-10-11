@@ -36,6 +36,8 @@ const zipProcess = require("zip-process")
             .describe("c", "name of canvas layer group (default: \"Canvas\")")
         .string("s").nargs("s", 1).alias("s", "skip").default("s", "^Background$")
             .describe("s", "regular expression matching layers to skip (default: \"^Background$\")")
+        .string("t").nargs("t", 1).alias("t", "transition").default("t", "none")
+            .describe("t", "slide transition (\"none\" or \"fade\", default: \"none\")")
         .version(false)
         .strict()
         .showHelpOnFail(true)
@@ -166,35 +168,37 @@ const zipProcess = require("zip-process")
     })
 
     /*  post-adjust PPTX: add slide transition  */
-    verbose("post-adjusting PPTX")
-    let zip = fs.readFileSync(pptxfile)
-    let out = await zipProcess(zip, {
-        compression: "DEFLATE",
-        extendOptions: { compressionOptions: { level: 9 } }
-    }, {
-        string: {
-            filter: (relativePath, fileInfo) => {
-                return relativePath.match(/^ppt\/slides\/slide\d+\.xml$/)
-            },
-            callback: (data, relativePath, zipObject) => {
-                let transition =
-                    '<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">' +
-                        '<mc:Choice xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" Requires="p14">' +
-                            '<p:transition spd="med" p14:dur="700">' +
-                                '<p:fade/>' +
-                            '</p:transition>' +
-                        '</mc:Choice>' +
-                        '<mc:Fallback>' +
-                            '<p:transition spd="med">' +
-                                '<p:fade/>' +
-                            '</p:transition>' +
-                        '</mc:Fallback>' +
-                    '</mc:AlternateContent>'
-                data = data.replace(/(<\/p:sld>)/, transition + "$1")
-                return data
+    if (argv.transition !== "none") {
+        verbose("post-adjusting PPTX")
+        let zip = fs.readFileSync(pptxfile)
+        let out = await zipProcess(zip, {
+            compression: "DEFLATE",
+            extendOptions: { compressionOptions: { level: 9 } }
+        }, {
+            string: {
+                filter: (relativePath, fileInfo) => {
+                    return relativePath.match(/^ppt\/slides\/slide\d+\.xml$/)
+                },
+                callback: (data, relativePath, zipObject) => {
+                    let transition =
+                        '<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">' +
+                            '<mc:Choice xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" Requires="p14">' +
+                                '<p:transition spd="med" p14:dur="700">' +
+                                    '<p:fade/>' +
+                                '</p:transition>' +
+                            '</mc:Choice>' +
+                            '<mc:Fallback>' +
+                                '<p:transition spd="med">' +
+                                    '<p:fade/>' +
+                                '</p:transition>' +
+                            '</mc:Fallback>' +
+                        '</mc:AlternateContent>'
+                    data = data.replace(/(<\/p:sld>)/, transition + "$1")
+                    return data
+                }
             }
-        }
-    })
+        })
+    }
 
     /*  write output file  */
     let pptxname = (argv.output !== "" ? argv.output : `${basename}.pptx`)
