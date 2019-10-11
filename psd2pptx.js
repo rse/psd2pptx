@@ -167,7 +167,7 @@ const zipProcess = require("zip-process")
         })
     })
 
-    /*  post-adjust PPTX: add slide transition  */
+    /*  post-adjust PPTX: optionally add slide transition  */
     if (argv.transition !== "none") {
         let transition = ""
         if (argv.transition === "fade")
