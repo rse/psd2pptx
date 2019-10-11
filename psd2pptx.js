@@ -34,6 +34,8 @@ const zipProcess = require("zip-process")
             .describe("o", "output PPTX file")
         .string("c").nargs("c", 1).alias("c", "canvas").default("c", "Canvas")
             .describe("c", "name of canvas layer group (default: \"Canvas\")")
+        .string("s").nargs("s", 1).alias("s", "skip").default("s", "^Background$")
+            .describe("s", "regular expression matching layers to skip (default: \"^Background$\")")
         .version(false)
         .strict()
         .showHelpOnFail(true)
@@ -87,10 +89,14 @@ const zipProcess = require("zip-process")
     }
     await walkNode(psd.tree())
 
+    /*  skip some layers  */
+    let regex1 = new RegExp(argv.skip)
+    layers = layers.filter((item) => !item.path.match(regex1))
+
     /*  divide layers into canvas, slides and other layers  */
-    let regex = new RegExp(`^${argv.canvas}\/`, "i")
-    let layersCanvas = layers.filter((item)       =>  item.path.match(regex))
-    let layersSlides = layers.filter((item)       => !item.path.match(regex))
+    let regex2 = new RegExp(`^${argv.canvas}\/`, "i")
+    let layersCanvas = layers.filter((item)       =>  item.path.match(regex2))
+    let layersSlides = layers.filter((item)       => !item.path.match(regex2))
     let layersOthers = layersSlides.filter((item) => !item.path.match(/^.+\/[^\/]+$/i))
     layersSlides     = layersSlides.filter((item) =>  item.path.match(/^.+\/[^\/]+$/i))
 
