@@ -37,7 +37,7 @@ const zipProcess = require("zip-process")
         .string("s").nargs("s", 1).alias("s", "skip").default("s", "^Background$")
             .describe("s", "regular expression matching layers to skip (default: \"^Background$\")")
         .string("t").nargs("t", 1).alias("t", "transition").default("t", "none")
-            .describe("t", "slide transition (\"none\" or \"fade\", default: \"none\")")
+            .describe("t", "slide transition (\"none\", \"fade\" or \"wipe\", default: \"none\")")
         .version(false)
         .strict()
         .showHelpOnFail(true)
@@ -169,6 +169,13 @@ const zipProcess = require("zip-process")
 
     /*  post-adjust PPTX: add slide transition  */
     if (argv.transition !== "none") {
+        let transition = ""
+        if (argv.transition === "fade")
+            transition = "<p:fade/>"
+        else if (argv.transition === "wipe")
+            transition = "<p:strips dir=\"rd\"/>"
+        else
+            throw new Error("invalid transition type")
         verbose("post-adjusting PPTX")
         let zip = fs.readFileSync(pptxfile)
         let out = await zipProcess(zip, {
@@ -184,12 +191,12 @@ const zipProcess = require("zip-process")
                         '<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">' +
                             '<mc:Choice xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" Requires="p14">' +
                                 '<p:transition spd="med" p14:dur="700">' +
-                                    '<p:fade/>' +
+                                    transition +
                                 '</p:transition>' +
                             '</mc:Choice>' +
                             '<mc:Fallback>' +
                                 '<p:transition spd="med">' +
-                                    '<p:fade/>' +
+                                    transition +
                                 '</p:transition>' +
                             '</mc:Fallback>' +
                         '</mc:AlternateContent>'
