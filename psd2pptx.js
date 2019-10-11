@@ -123,9 +123,8 @@ const zipProcess = require("zip-process")
             slide = empty.clone()
             verbose(`generating image: ${chalk.blue(item.path)} (scratch)`)
         }
-        else {
+        else
             verbose(`generating image: ${chalk.blue(item.path)} (merged)`)
-        }
         let src = await Jimp.read(item.file)
         await src.opacity(item.opacity / 255)
         await slide.blit(src, 0, 0)
