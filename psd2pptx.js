@@ -205,12 +205,18 @@ const zipProcess = require("zip-process")
                 }
             }
         })
-    }
 
-    /*  write output file  */
-    let pptxname = (argv.output !== "" ? argv.output : `${basename}.pptx`)
-    verbose(`writing PPTX file: ${chalk.blue(pptxname)}`)
-    fs.writeFileSync(pptxname, out)
+        /*  write output file  */
+        let pptxname = (argv.output !== "" ? argv.output : `${basename}.pptx`)
+        verbose(`writing PPTX file: ${chalk.blue(pptxname)}`)
+        fs.writeFileSync(pptxname, out)
+    }
+    else {
+        /*  write output file  */
+        let pptxname = (argv.output !== "" ? argv.output : `${basename}.pptx`)
+        verbose(`writing PPTX file: ${chalk.blue(pptxname)}`)
+        fs.copyFileSync(pptxfile, pptxname)
+    }
 
     /*  delete temporary filesystem area  */
     tmpdir.removeCallback()
