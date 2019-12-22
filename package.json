@@ -8,19 +8,19 @@
         "psd2pptx":    "psd2pptx.js"
     },
     "dependencies": {
-        "psd.js":      "3.3.3-beta.7",
-        "jimp":        "0.8.5",
-        "bluebird":    "3.7.1",
+        "psd.js":      "3.3.4-beta.3",
+        "jimp":        "0.9.3",
+        "bluebird":    "3.7.2",
         "pptxgenjs":   "2.6.0",
         "zip-process": "0.2.6",
-        "yargs":       "14.2.0",
-        "execa":       "3.2.0",
-        "chalk":       "2.4.2",
+        "yargs":       "15.0.2",
+        "execa":       "4.0.0",
+        "chalk":       "3.0.0",
         "tmp":         "0.1.0"
     },
     "devDependencies": {
         "upd":         "2.6.2",
-        "pkg":         "4.4.0"
+        "pkg":         "4.4.2"
     },
     "scripts": {
         "update":      "upd",
