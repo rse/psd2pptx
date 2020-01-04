@@ -1,30 +1,38 @@
 {
-    "name":            "psd2pptx",
-    "version":         "0.9.6",
-    "description":     "Convert Photoshop (PSD) layers to PowerPoint (PPTX) slides",
-    "author":          "Dr. Ralf S. Engelschall",
-    "license":         "MIT",
+    "name":               "psd2pptx",
+    "version":            "0.9.6",
+    "description":        "Convert Photoshop (PSD) layers to PowerPoint (PPTX) slides",
+    "author":             "Dr. Ralf S. Engelschall",
+    "license":            "MIT",
     "bin": {
-        "psd2pptx":    "psd2pptx.js"
+        "psd2pptx":       "psd2pptx.js"
     },
     "dependencies": {
-        "psd.js":      "3.3.4-beta.3",
-        "jimp":        "0.9.3",
-        "bluebird":    "3.7.2",
-        "pptxgenjs":   "2.6.0",
-        "zip-process": "0.2.6",
-        "yargs":       "15.0.2",
-        "execa":       "4.0.0",
-        "chalk":       "3.0.0",
-        "tmp":         "0.1.0"
+        "psd.js":         "3.3.4-beta.3",
+        "jimp":           "0.9.3",
+        "bluebird":       "3.7.2",
+        "pptxgenjs":      "2.6.0",
+        "zip-process":    "0.2.6",
+        "yargs":          "15.1.0",
+        "execa":          "4.0.0",
+        "chalk":          "3.0.0",
+        "tmp":            "0.1.0"
     },
     "devDependencies": {
-        "upd":         "2.6.2",
-        "pkg":         "4.4.2"
+        "npm-run-all":    "4.1.5",
+        "shx":            "0.3.2",
+        "upd":            "2.6.3",
+        "pkg":            "4.4.2"
     },
     "scripts": {
-        "update":      "upd",
-        "package":     "pkg -t node12-linux-x64,node12-win-x64 .",
-        "test":        "node psd2pptx.js -v -o sample.pptx sample.psd"
+        "update":         "upd",
+        "package":        "npm-run-all -s package:gen package:mv:lnx package:mv:win package:mv:mac",
+        "package:gen":    "pkg -t node12-linux-x64,node12-win-x64,node12-macos-x64 .",
+        "package:mv:lnx": "shx mv psd2pptx-linux   psd2pptx-lnx-x64",
+        "package:mv:win": "shx mv psd2pptx-win.exe psd2pptx-win-x64.exe",
+        "package:mv:mac": "shx mv psd2pptx-macos   psd2pptx-mac-x64",
+        "package:clean":  "shx rm -f psd2pptx-lnx-x64 psd2pptx-win-x64.exe psd2pptx-mac-x64",
+        "test":           "node psd2pptx.js -v -o sample.pptx sample.psd",
+        "clean":          "npm-run-all -s package:clean"
     }
 }
