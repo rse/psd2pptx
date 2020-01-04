@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*!
 **  psd2pptx -- Convert Photoshop (PSD) layers to PowerPoint (PPTX) slides
-**  Copyright (c) 2019 Dr. Ralf S. Engelschall <rse@engelschall.com>
+**  Copyright (c) 2019-2020 Dr. Ralf S. Engelschall <rse@engelschall.com>
 **  Licensed under MIT Open Source license.
 */
 
