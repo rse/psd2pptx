@@ -146,7 +146,8 @@ const zipProcess = require("zip-process")
 
     /*  generate PPTX out of PNG images  */
     let pptx = new PPTXGenJS()
-    pptx.setLayout({ name: "Custom", width: 10, height: 10 * (h/w) })
+    pptx.defineLayout({ name: "Custom", width: 10, height: 10 * (h/w) })
+    pptx.layout = "Custom"
     pptx.defineSlideMaster({
          title: "psd2pptx",
          bkgd:  "FFFFFF",
@@ -156,16 +157,12 @@ const zipProcess = require("zip-process")
     })
     for (let i = 0; i < pngs.length; i++) {
         verbose(`generating slide: ${chalk.blue(pngs[i].path)}`)
-        let slide = pptx.addNewSlide("psd2pptx")
+        let slide = pptx.addSlide("psd2pptx")
         slide.addImage({ path: pngs[i].file, x: 0, y: 0, w: 10, h: 10 * (h/w) })
     }
     let pptxfile = `${tmpdir.name}/slides.pptx`
     verbose("generating PPTX")
-    await new Promise((resolve, reject) => {
-        pptx.save(pptxfile, (filename) => {
-            resolve()
-        })
-    })
+    await pptx.writeFile(pptxfile)
 
     /*  post-adjust PPTX: optionally add slide transition  */
     if (argv.transition !== "none") {

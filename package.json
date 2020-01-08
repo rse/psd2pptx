@@ -8,10 +8,10 @@
         "psd2pptx":       "psd2pptx.js"
     },
     "dependencies": {
-        "psd.js":         "3.3.4-beta.3",
+        "psd.js":         "3.3.5",
         "jimp":           "0.9.3",
         "bluebird":       "3.7.2",
-        "pptxgenjs":      "2.6.0",
+        "pptxgenjs":      "3.0.1",
         "zip-process":    "0.2.6",
         "yargs":          "15.1.0",
         "execa":          "4.0.0",
