@@ -8,26 +8,26 @@
         "psd2pptx":       "psd2pptx.js"
     },
     "dependencies": {
-        "psd.js":         "3.3.5",
-        "jimp":           "0.9.3",
+        "psd.js":         "3.3.12",
+        "jimp":           "0.14.0",
         "bluebird":       "3.7.2",
-        "pptxgenjs":      "3.0.1",
+        "pptxgenjs":      "3.2.1",
         "zip-process":    "0.2.6",
-        "yargs":          "15.1.0",
-        "execa":          "4.0.0",
-        "chalk":          "3.0.0",
-        "tmp":            "0.1.0"
+        "yargs":          "15.4.0",
+        "execa":          "4.0.2",
+        "chalk":          "4.1.0",
+        "tmp":            "0.2.1"
     },
     "devDependencies": {
         "npm-run-all":    "4.1.5",
         "shx":            "0.3.2",
-        "upd":            "2.6.3",
-        "pkg":            "4.4.2"
+        "upd":            "2.7.2",
+        "pkg":            "4.4.9"
     },
     "scripts": {
         "update":         "upd",
         "package":        "npm-run-all -s package:gen package:mv:lnx package:mv:win package:mv:mac",
-        "package:gen":    "pkg -t node12-linux-x64,node12-win-x64,node12-macos-x64 .",
+        "package:gen":    "pkg -t node14-linux-x64,node14-win-x64,node14-macos-x64 .",
         "package:mv:lnx": "shx mv psd2pptx-linux   psd2pptx-lnx-x64",
         "package:mv:win": "shx mv psd2pptx-win.exe psd2pptx-win-x64.exe",
         "package:mv:mac": "shx mv psd2pptx-macos   psd2pptx-mac-x64",
