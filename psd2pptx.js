@@ -51,7 +51,7 @@ const zipProcess = require("zip-process")
     }
 
     /*  create temporary filesystem area  */
-    const tmpdir = tmp.dirSync()
+    const tmpdir = tmp.dirSync({ unsafeCleanup: true })
 
     /*  read and parse PSD file  */
     const psdfile = argv._[0]
