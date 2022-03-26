@@ -28,7 +28,7 @@
     "scripts": {
         "update":         "upd",
         "package":        "npm-run-all -s package:gen package:mv:lnx package:mv:win package:mv:mac",
-        "package:gen":    "pkg -t node14-linux-x64,node14-win-x64,node14-macos-x64 .",
+        "package:gen":    "pkg -t node16-linux-x64,node16-win-x64,node16-macos-x64 .",
         "package:mv:lnx": "shx mv psd2pptx-linux   psd2pptx-lnx-x64",
         "package:mv:win": "shx mv psd2pptx-win.exe psd2pptx-win-x64.exe",
         "package:mv:mac": "shx mv psd2pptx-macos   psd2pptx-mac-x64",
