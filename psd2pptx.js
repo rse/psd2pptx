@@ -162,7 +162,7 @@ const zipProcess = require("zip-process")
     }
     let pptxfile = `${tmpdir.name}/slides.pptx`
     verbose("generating PPTX")
-    await pptx.writeFile(pptxfile)
+    await pptx.writeFile({ fileName: pptxfile })
 
     /*  post-adjust PPTX: optionally add slide transition  */
     if (argv.transition !== "none") {
